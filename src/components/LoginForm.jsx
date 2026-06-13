@@ -1,6 +1,6 @@
-function LoginForm({ form, message, onChange, onSubmit, onSwitch }) {
+function LoginForm({ form, message, onChange, onSubmit, onSwitch, isSubmitting }) {
   return (
-    <form onSubmit={onSubmit} className="auth-form">
+    <form onSubmit={onSubmit} className="auth-form" aria-busy={isSubmitting}>
       <h2>Login</h2>
       <p className="form-intro">Sign in to manage your restaurant donations or NGO pickup requests quickly.</p>
 
@@ -12,6 +12,7 @@ function LoginForm({ form, message, onChange, onSubmit, onSwitch }) {
           value={form.email}
           onChange={onChange}
           placeholder="you@example.com"
+          disabled={isSubmitting}
         />
       </label>
 
@@ -23,18 +24,19 @@ function LoginForm({ form, message, onChange, onSubmit, onSwitch }) {
           value={form.password}
           onChange={onChange}
           placeholder="Password"
+          disabled={isSubmitting}
         />
       </label>
 
       {message && <p className="message">{message}</p>}
 
-      <button type="submit" className="primary">
-        Sign in
+      <button type="submit" className="primary" disabled={isSubmitting}>
+        {isSubmitting ? <><span className="spinner" aria-hidden="true"></span>Signing in...</> : 'Sign in'}
       </button>
 
       <div className="toggle-text">
         <span>Don't have an account?</span>
-        <button type="button" className="link-button" onClick={onSwitch}>
+        <button type="button" className="link-button" onClick={onSwitch} disabled={isSubmitting}>
           Register now
         </button>
       </div>
