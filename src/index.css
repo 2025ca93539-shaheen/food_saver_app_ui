@@ -130,6 +130,29 @@ button {
   filter: brightness(1.08);
 }
 
+.primary:disabled {
+  opacity: 0.8;
+  cursor: wait;
+}
+
+.spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255,255,255,0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.65rem;
+  animation: spin 0.8s linear infinite;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .toggle-text {
   display: grid;
   gap: 0.75rem;
